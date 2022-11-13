@@ -305,7 +305,7 @@ fn bootloader_main(
 
         for frame in PhysFrame::range_inclusive(start_frame, end_frame) {
             let page = Page::containing_address(virt_for_phys(frame.start_address()));
-            let flags = PageTableFlags::PRESENT | PageTableFlags::WRITABLE;
+            let flags = PageTableFlags::PRESENT | PageTableFlags::WRITABLE | PageTableFlags::USER_ACCESSIBLE;
             unsafe {
                 page_table::map_page(
                     page,
